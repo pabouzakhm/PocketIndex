@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PocketIndex — Remember What You Love. Rate, Review & Buy Again.</title>
+  <meta name="description" content="Keep inventory of what you love. Know if you'd buy it again and keep track of your collections with the information you want. Auto-populate details in seconds with AI.">
+  <link rel="icon" type="image/png" href="assets/icon.png">
+  <style>
+    :root {
+      --bg: #090d16;
+      --card-bg: rgba(30, 41, 59, 0.7);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent-glow: rgba(56, 189, 248, 0.25);
+      --accent-gradient: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.12) 0%, transparent 60%),
+        radial-gradient(circle at 80% 50%, rgba(129, 140, 248, 0.08) 0%, transparent 40%);
+      background-repeat: no-repeat;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    a:hover {
+      color: #7dd3fc;
+    }
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Nav */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--card-border);
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #fff;
+    }
+    .brand img {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px var(--accent-glow);
+    }
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      font-size: 0.9375rem;
+      font-weight: 500;
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 4.5rem 0 3.5rem;
+    }
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 1rem;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--accent);
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 9999px;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 0 20px rgba(56, 189, 248, 0.15);
+    }
+    .hero h1 {
+      font-size: clamp(2.25rem, 5vw, 3.75rem);
+      font-weight: 900;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.25rem;
+      max-width: 820px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .hero h1 span {
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero p {
+      font-size: 1.125rem;
+      color: var(--text-muted);
+      max-width: 680px;
+      margin: 0 auto 2.25rem;
+    }
+    .hero-quote {
+      display: block;
+      margin-top: 0.85rem;
+      color: #7dd3fc;
+      font-weight: 500;
+      font-style: italic;
+    }
+    .hero-actions {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 3.5rem;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.8rem 1.6rem;
+      font-size: 0.9375rem;
+      font-weight: 700;
+      border-radius: 12px;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background: var(--accent-gradient);
+      color: #090d16;
+      border: none;
+      box-shadow: 0 4px 20px var(--accent-glow);
+    }
+    .btn-primary:hover {
+      color: #090d16;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 25px rgba(56, 189, 248, 0.4);
+    }
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      color: #fff;
+      border: 1px solid var(--card-border);
+      backdrop-filter: blur(8px);
+    }
+    .btn-secondary:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-2px);
+    }
+
+    /* Hero Banner Image */
+    .hero-banner {
+      max-width: 900px;
+      margin: 0 auto;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6), 0 0 40px rgba(56, 189, 248, 0.15);
+      background: #111827;
+    }
+    .hero-banner img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Features Grid */
+    .features {
+      padding: 5rem 0;
+    }
+    .section-header {
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto 3.5rem;
+    }
+    .section-header h2 {
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.75rem;
+    }
+    .section-header p {
+      color: var(--text-muted);
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 2rem;
+      backdrop-filter: blur(12px);
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(56, 189, 248, 0.3);
+    }
+    .card-icon {
+      font-size: 1.75rem;
+      margin-bottom: 1rem;
+      display: inline-block;
+    }
+    .card h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+      color: #fff;
+    }
+    .card p {
+      color: var(--text-muted);
+      font-size: 0.9375rem;
+      line-height: 1.55;
+    }
+
+    /* Motto / Value Highlight Banner */
+    .motto-banner {
+      margin: 4.5rem 0;
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 41, 59, 0.85) 100%);
+      border: 1px solid rgba(56, 189, 248, 0.22);
+      border-radius: 20px;
+      padding: 3.5rem 2rem;
+      text-align: center;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.35), 0 0 35px rgba(56, 189, 248, 0.08);
+      position: relative;
+      overflow: hidden;
+    }
+    .motto-banner::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 15%;
+      right: 15%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.5), transparent);
+    }
+    .motto-badge {
+      display: inline-block;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--accent);
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 9999px;
+      padding: 0.25rem 0.85rem;
+      margin-bottom: 1.25rem;
+    }
+    .motto-quote {
+      font-size: clamp(1.4rem, 3.2vw, 2.1rem);
+      font-weight: 800;
+      line-height: 1.35;
+      letter-spacing: -0.02em;
+      color: #fff;
+      max-width: 820px;
+      margin: 0 auto 1.1rem;
+    }
+    .motto-subtext {
+      color: var(--text-muted);
+      max-width: 680px;
+      margin: 0 auto 2.5rem;
+      font-size: 1.05rem;
+      line-height: 1.6;
+    }
+    .motto-stats {
+      display: flex;
+      justify-content: center;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+      border-top: 1px solid var(--card-border);
+      padding-top: 2rem;
+      max-width: 820px;
+      margin: 0 auto;
+    }
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .stat-number {
+      font-size: 1.75rem;
+      font-weight: 800;
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .stat-label {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      margin-top: 0.25rem;
+    }
+    .motto-footnote {
+      margin-top: 1.5rem;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      opacity: 0.75;
+    }
+
+    /* Screenshots Section */
+    .screenshots-section {
+      padding: 3.5rem 0 2rem;
+    }
+    .screenshots-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 2rem;
+      justify-content: center;
+    }
+    .screenshot-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .phone-frame {
+      width: 100%;
+      max-width: 255px;
+      border-radius: 28px;
+      overflow: hidden;
+      border: 3px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.65), 0 0 24px rgba(56, 189, 248, 0.1);
+      background: #111827;
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .phone-frame:hover {
+      transform: translateY(-8px) scale(1.02);
+      border-color: rgba(56, 189, 248, 0.45);
+      box-shadow: 0 24px 48px -8px rgba(0, 0, 0, 0.75), 0 0 32px rgba(56, 189, 248, 0.22);
+    }
+    .phone-frame img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .screenshot-info {
+      margin-top: 1.15rem;
+      max-width: 240px;
+    }
+    .screenshot-info h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.35rem;
+    }
+    .screenshot-info p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--card-border);
+      padding: 2.5rem 0;
+      font-size: 0.875rem;
+      color: var(--text-muted);
+    }
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 640px) {
+      nav {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.85rem;
+        padding: 1.1rem 0 0.9rem;
+      }
+      .brand {
+        font-size: 1.25rem;
+      }
+      .nav-links {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 0.45rem 0.6rem;
+        font-size: 0.8125rem;
+      }
+      .nav-links a {
+        padding: 0.35rem 0.75rem;
+        border-radius: 9999px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        color: #e2e8f0;
+        white-space: nowrap;
+        transition: all 0.2s ease;
+      }
+      .nav-links a:hover,
+      .nav-links a:active {
+        background: rgba(56, 189, 248, 0.15);
+        border-color: rgba(56, 189, 248, 0.35);
+        color: var(--accent);
+      }
+      .motto-stats {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+        padding-top: 1.5rem;
+      }
+      .footer-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+      }
+      .footer-links {
+        justify-content: center;
+      }
+    }
+    @media (max-width: 420px) {
+      .nav-extra {
+        display: none;
+      }
+      .nav-links {
+        gap: 0.35rem;
+      }
+      .nav-links a {
+        padding: 0.3rem 0.55rem;
+        font-size: 0.75rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <nav>
+      <div class="brand">
+        <img src="assets/icon.png" alt="PocketIndex Icon">
+        PocketIndex
+      </div>
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#preview"><span class="nav-extra">App </span>Preview</a>
+        <a href="#recall">Recall<span class="nav-extra"> Companion</span></a>
+        <a href="privacy.html">Privacy</a>
+      </div>
+    </nav>
+
+    <header class="hero">
+      <div class="badge-pill">
+        <span>★ Smart Archiving • Personal Reviews • Buy-Again Verdicts • Collection Value Tracking</span>
+      </div>
+      <h1>Keep inventory of what you love. Know if you'd <span>buy it again</span>.</h1>
+      <p>
+        Snap a photo to auto-populate details in seconds, rate your experience, and log honest feedback so you never wonder again:
+        <span class="hero-quote">&ldquo;Did I like this, what did I pay, and should I buy it again?&rdquo;</span>
+        From coffee and drinks to hot sauces, books, and gear—track everyday reviews or manage valuable collections with custom fields and flexible templates. The possibilities are endless.
+      </p>
+      <div class="hero-actions">
+        <span class="btn btn-primary" style="cursor: default;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
+          </svg>
+          Google Play Store (Coming Soon)
+        </span>
+        <a href="privacy.html" class="btn btn-secondary">
+          Privacy Policy
+        </a>
+      </div>
+
+      <div class="hero-banner">
+        <img src="assets/feature-graphic.jpg" alt="PocketIndex Features Showcase">
+      </div>
+    </header>
+
+    <section class="features" id="features">
+      <div class="section-header">
+        <h2>Built for the Things You Enjoy</h2>
+        <p>A smart personal inventory and journal that does the heavy lifting for you—AI auto-fills item details and specs, leaving you to log your own honest reviews and ratings.</p>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <div class="card-icon">🎯</div>
+          <h3>Know If You'd Buy Again</h3>
+          <p>
+            Never stand in an aisle or browse an online store wondering if you liked that coffee roast, drink, or hot sauce. Log instant &ldquo;Buy Again&rdquo; verdicts, price paid, and ratings so you always make the right choice next time.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">⚡</div>
+          <h3>Auto-Populate in Seconds</h3>
+          <p>
+            Cataloging shouldn't feel like manual data entry. Point your camera at any label, bottle, package, or cover—multimodal AI vision instantly identifies the item, style, maker, and technical specifications with zero typing.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">📝</div>
+          <h3>Honest Feedback & Pros/Cons</h3>
+          <p>
+            Capture real impressions while they're fresh. Record pros, cons, and personal notes tailored to each category so you always have a trustworthy guide of what worked and what didn't.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">💎</div>
+          <h3>Two Tracking Modes: Reviews or Vaults</h3>
+          <p>
+            Choose between Review-based trackers (ratings, buy-again verdicts, price paid) or Collection-based vaults (condition grades, editions, and estimated market values).
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">🎛️</div>
+          <h3>Fully Customizable Details*</h3>
+          <p>
+            The sky is the limit. Use pre-configured templates or create your own folders from scratch. Choose your auto-populated fields* and add bespoke attributes to track whatever matters to you.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">📱</div>
+          <h3>Fast, Offline & Local-First</h3>
+          <p>
+            Your personal inventory opens instantly and works anywhere, even completely offline. No sluggish cloud round-trips or mandatory logins—your notes and photos stay safely on your device.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="screenshots-section" id="preview">
+      <div class="section-header">
+        <h2>Tailored to Whatever You Track</h2>
+        <p>From personalized onboarding to custom preset folders and a unified home gallery—see how PocketIndex adapts to your passions.</p>
+      </div>
+
+      <div class="screenshots-grid">
+        <div class="screenshot-card">
+          <div class="phone-frame">
+            <img src="assets/screenshots/01-tailor-what-to-track.png" alt="Tailor Your Experience" loading="lazy">
+          </div>
+          <div class="screenshot-info">
+            <h4>1. Tailor Your Focus</h4>
+            <p>Tell the app what you love tracking, and it configures the right folders from day one.</p>
+          </div>
+        </div>
+
+        <div class="screenshot-card">
+          <div class="phone-frame">
+            <img src="assets/screenshots/02-recommended-folders.png" alt="Curated Preset Templates" loading="lazy">
+          </div>
+          <div class="screenshot-info">
+            <h4>2. Instant Preset Templates</h4>
+            <p>Ready-to-use templates with tailored fields for board games, restaurant dishes, and collection vaults.</p>
+          </div>
+        </div>
+
+        <div class="screenshot-card">
+          <div class="phone-frame">
+            <img src="assets/screenshots/03-explore-more-folders.png" alt="Endless Categories" loading="lazy">
+          </div>
+          <div class="screenshot-info">
+            <h4>3. Endless Categories</h4>
+            <p>Add specialty coffee, hot sauces, beauty products, BBQ sauce, or build your own custom folder.</p>
+          </div>
+        </div>
+
+        <div class="screenshot-card">
+          <div class="phone-frame">
+            <img src="assets/screenshots/04-personal-inventory-home.png" alt="Unified Home Gallery" loading="lazy">
+          </div>
+          <div class="screenshot-info">
+            <h4>4. Your Personal Inventory</h4>
+            <p>A unified visual home for all your review logs, ratings, and collection values side-by-side.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="motto-banner" id="recall">
+      <div class="motto-badge">Your Recall Companion</div>
+      <h2 class="motto-quote">&ldquo;Your external memory for everything you've ever tasted, tried, collected and loved.&rdquo;</h2>
+      <p class="motto-subtext">
+        Whether it's the perfect espresso roast, a standout hot sauce, a favorite board game, clothing, antiques, or collectibles—PocketIndex keeps your impressions and collections organized so you always remember what you have, what you've tried and what made the cut.
+      </p>
+      <div class="motto-stats">
+        <div class="stat-item">
+          <span class="stat-number">&lt; 2s</span>
+          <span class="stat-label">AI Auto-Fill</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">Custom</span>
+          <span class="stat-label">Choose Auto-Populated Fields*</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">Offline</span>
+          <span class="stat-label">Instant Access</span>
+        </div>
+      </div>
+      <p class="motto-footnote">*Certain limits apply.</p>
+    </div>
+
+    <footer>
+      <div class="footer-content">
+        <div>
+          PocketIndex • Built to help you remember the things you love.
+        </div>
+        <div class="footer-links">
+          <a href="privacy.html">Privacy Policy</a>
+          <span>Support: Coming Soon</span>
+        </div>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
