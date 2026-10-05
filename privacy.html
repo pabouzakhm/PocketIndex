@@ -4,30 +4,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Privacy Policy — PocketIndex</title>
+  <link rel="icon" type="image/png" href="assets/icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #0f172a;
-      --card-bg: #1e293b;
-      --text: #e2e8f0;
-      --text-muted: #94a3b8;
-      --accent: #38bdf8;
-      --accent-hover: #0ea5e9;
-      --border: #334155;
-      --badge-bg: rgba(56, 189, 248, 0.1);
-      --badge-border: rgba(56, 189, 248, 0.3);
-    }
-    @media (prefers-color-scheme: light) {
-      :root {
-        --bg: #f8fafc;
-        --card-bg: #ffffff;
-        --text: #0f172a;
-        --text-muted: #64748b;
-        --accent: #0284c7;
-        --accent-hover: #0369a1;
-        --border: #e2e8f0;
-        --badge-bg: rgba(2, 132, 199, 0.08);
-        --badge-border: rgba(2, 132, 199, 0.2);
-      }
+      --bg: #f4eedd;
+      --bg-dots: #d3c8b0;
+      --card-bg: #ffffff;
+      --text: #181614;
+      --text-muted: #57534e;
+      --accent: #842d0e;
+      --accent-hover: #b45309;
+      --border: #ded5c1;
+      --badge-bg: rgba(180, 83, 9, 0.08);
+      --badge-border: rgba(180, 83, 9, 0.25);
     }
     * {
       box-sizing: border-box;
@@ -35,11 +27,16 @@
       padding: 0;
     }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       background-color: var(--bg);
       color: var(--text);
       line-height: 1.65;
-      padding: 2rem 1rem;
+      padding: 2.5rem 1rem;
+      background-image: 
+        radial-gradient(var(--bg-dots) 1.2px, transparent 1.2px),
+        radial-gradient(circle at 50% 0%, rgba(217, 119, 6, 0.08) 0%, transparent 60%);
+      background-size: 20px 20px, 100% 100%;
+      background-repeat: repeat, no-repeat;
     }
     .container {
       max-width: 800px;
@@ -48,12 +45,23 @@
       border: 1px solid var(--border);
       border-radius: 16px;
       padding: 2.5rem;
-      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 10px 25px -5px rgba(90, 70, 50, 0.08), 0 8px 10px -6px rgba(90, 70, 50, 0.04);
     }
     header {
       margin-bottom: 2rem;
       padding-bottom: 1.5rem;
       border-bottom: 1px solid var(--border);
+    }
+    .back-nav {
+      margin-bottom: 1.25rem;
+    }
+    .back-nav a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--accent);
     }
     .badge {
       display: inline-block;
@@ -71,6 +79,7 @@
       font-weight: 800;
       letter-spacing: -0.025em;
       margin-bottom: 0.5rem;
+      color: var(--text);
     }
     .meta {
       font-size: 0.875rem;
@@ -95,6 +104,7 @@
     }
     li {
       margin-bottom: 0.5rem;
+      color: var(--text);
     }
     strong {
       color: var(--text);
@@ -115,6 +125,7 @@
     .highlight-box p {
       margin-bottom: 0;
       font-size: 0.9375rem;
+      color: var(--text);
     }
     footer {
       margin-top: 3rem;
@@ -129,119 +140,473 @@
       text-decoration: none;
     }
     a:hover {
+      color: var(--accent-hover);
       text-decoration: underline;
+    }
+    /* Language Switcher */
+    .lang-switcher {
+      display: inline-flex;
+      align-items: center;
+      background: #ece4d2;
+      border: 1px solid #ded5c1;
+      border-radius: 9999px;
+      padding: 2px;
+      gap: 2px;
+    }
+    .lang-btn {
+      background: transparent;
+      border: none;
+      border-radius: 9999px;
+      padding: 0.22rem 0.55rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #635e59;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+    .lang-btn:hover {
+      color: var(--accent);
+    }
+    .lang-btn.active {
+      background: #ffffff;
+      color: var(--accent);
+      box-shadow: 0 1px 4px rgba(90, 70, 50, 0.15);
+    }
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.25rem;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <header>
-      <span class="badge">Privacy First Architecture</span>
-      <h1>Privacy Policy for PocketIndex</h1>
-      <p class="meta">Effective Date: September 27, 2026 &bull; Application: PocketIndex (com.pocketindex.app)</p>
-    </header>
+    <div class="header-top">
+      <div class="back-nav" style="margin-bottom: 0;">
+        <a href="index.html" id="back-link">&larr; <span id="back-text">Back to PocketIndex</span></a>
+      </div>
+      <div class="lang-switcher" role="group" aria-label="Language selector">
+        <button type="button" class="lang-btn active" data-lang="en">EN</button>
+        <button type="button" class="lang-btn" data-lang="fr">FR</button>
+        <button type="button" class="lang-btn" data-lang="es">ES</button>
+      </div>
+    </div>
 
-    <div class="highlight-box">
-      <h3>The PocketIndex Privacy Promise</h3>
+    <!-- ENGLISH CONTENT -->
+    <div id="privacy-en" class="privacy-section">
+      <header>
+        <span class="badge">Privacy First Architecture</span>
+        <h1>Privacy Policy for PocketIndex</h1>
+        <p class="meta">Effective Date: September 27, 2026 &bull; Application: PocketIndex (com.pocketindex.app)</p>
+      </header>
+
+      <div class="highlight-box">
+        <h3>The PocketIndex Privacy Promise</h3>
+        <p>
+          PocketIndex is built with a <strong>local-first</strong> privacy philosophy. Your collections, custom folders, item ratings, personal notes, and photo libraries remain stored strictly on your device. We do not operate remote user databases, and we never sell, rent, or monetize your personal data.
+        </p>
+      </div>
+
+      <h2>1. Information We Handle</h2>
+      <p>PocketIndex processes minimal data strictly necessary to deliver its core collection cataloging features:</p>
+      <ul>
+        <li>
+          <strong>Collection &amp; Item Data (Stored Locally on Device)</strong>: All categories, folder names, custom fields, ratings, acquisition dates, pricing notes, and photos are saved directly in your device's local storage (Android Scoped Storage / local SQLite). This data is never synchronized to a central company database without your explicit action.
+        </li>
+        <li>
+          <strong>Camera &amp; Photo Captures</strong>: Camera access is requested solely when you choose to take a photo of an item to add it to your catalog, or when selecting an existing image from your photo gallery.
+        </li>
+        <li>
+          <strong>Device Diagnostics &amp; Anonymous Identifiers</strong>: Standard, non-personal technical identifiers (such as device OS version, app version, and anonymous installation identifiers) may be processed to deliver updates, diagnose crashes, and prevent automated abuse of backend APIs.
+        </li>
+      </ul>
+
+      <h2>2. Artificial Intelligence (AI) Multimodal Processing</h2>
       <p>
-        PocketIndex is built with a <strong>local-first</strong> privacy philosophy. Your collections, custom folders, item ratings, personal notes, and photo libraries remain stored strictly on your device. We do not operate remote user databases, and we never sell, rent, or monetize your personal data.
+        PocketIndex includes an optional AI scan feature that assists you in identifying items, extracting details, and pre-filling collection fields. When you submit a photo for AI analysis:
+      </p>
+      <ul>
+        <li>
+          <strong>Ephemeral Transmission</strong>: The captured image is compressed and securely transmitted over encrypted HTTPS to the Google Gemini API solely for real-time visual analysis and structured field extraction.
+        </li>
+        <li>
+          <strong>No Permanent Storage</strong>: Your photos are processed in memory and are <strong>not stored, archived, or retained</strong> on our servers after the response is generated.
+        </li>
+        <li>
+          <strong>EXIF &amp; Metadata Stripping</strong>: Images are stripped of GPS coordinates and camera metadata client-side before transmission to safeguard your location privacy.
+        </li>
+        <li>
+          <strong>No Model Training on Private Collections</strong>: Your collection images are not used to train proprietary public models.
+        </li>
+      </ul>
+
+      <h2>3. Advertising &amp; Third-Party Services</h2>
+      <p>
+        To support ongoing maintenance and provide free AI scan allowances, PocketIndex may display advertisements via Google AdMob:
+      </p>
+      <ul>
+        <li>
+          <strong>Google AdMob</strong>: Google AdMob may collect and process pseudonymous identifiers (such as the Android Advertising ID), approximate IP location, and app interaction events to serve contextual or personalized advertisements and prevent fraudulent ad traffic.
+        </li>
+        <li>
+          <strong>User Consent (GDPR / CCPA / UMP)</strong>: In jurisdictions subject to data privacy regulations (including the EU and California), users are presented with a consent management dialogue (Google User Messaging Platform) to choose between personalized ads, non-personalized ads, or ad opt-outs.
+        </li>
+        <li>
+          For more information on how Google handles advertising data, review <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener noreferrer">Google's Advertising Privacy &amp; Terms</a>.
+        </li>
+      </ul>
+
+      <h2>4. Data Retention &amp; Deletion</h2>
+      <p>
+        Because your collection data resides locally on your device:
+      </p>
+      <ul>
+        <li>
+          <strong>Full User Control</strong>: You can edit or delete individual items, photos, or folders at any time directly within the app interface.
+        </li>
+        <li>
+          <strong>Complete Data Deletion</strong>: Uninstalling the PocketIndex application or clearing the application's storage in your Android System Settings immediately and permanently deletes all stored collections, records, and cached images from your device.
+        </li>
+        <li>
+          <strong>Offline Backups</strong>: If you export a backup archive via the app settings, the file is saved to your personal device storage or chosen cloud drive under your direct control.
+        </li>
+      </ul>
+
+      <h2>5. Security of Your Information</h2>
+      <p>
+        We implement cryptographic HMAC request signing, encrypted HTTPS network transport for all API interactions, and on-device private folder locking (PIN protection) to ensure that your collection data remains secure and shielded from unauthorized local or network access.
+      </p>
+
+      <h2>6. Children's Privacy</h2>
+      <p>
+        PocketIndex is designed for general audiences and collectors aged 13 and above. We do not knowingly collect or solicit personal identifiable information from children under the age of 13.
+      </p>
+
+      <h2>7. Changes to This Privacy Policy</h2>
+      <p>
+        We may occasionally update our Privacy Policy to reflect app enhancements, regulatory guidelines, or new platform features. Any updates will be published to this webpage with a revised "Effective Date".
+      </p>
+
+      <h2>8. Contact Us</h2>
+      <p>
+        If you have questions, feedback, or data privacy inquiries regarding PocketIndex, please reach out to us at:
+      </p>
+      <p>
+        <strong>Developer Support</strong>: <a href="mailto:pocketindex.support@gmail.com">pocketindex.support@gmail.com</a>
+      </p>
+      <p>
+        <strong>Community &amp; Feature Requests</strong>: <a href="https://github.com/pabouzakhm/PocketIndex/discussions" target="_blank" rel="noopener noreferrer">GitHub Discussions</a> &bull; <a href="https://github.com/pabouzakhm/PocketIndex/issues" target="_blank" rel="noopener noreferrer">Feature Requests</a>
       </p>
     </div>
 
-    <h2>1. Information We Handle</h2>
-    <p>PocketIndex processes minimal data strictly necessary to deliver its core collection cataloging features:</p>
-    <ul>
-      <li>
-        <strong>Collection & Item Data (Stored Locally on Device)</strong>: All categories, folder names, custom fields, ratings, acquisition dates, pricing notes, and photos are saved directly in your device's local storage (Android Scoped Storage / local SQLite). This data is never synchronized to a central company database without your explicit action.
-      </li>
-      <li>
-        <strong>Camera & Photo Captures</strong>: Camera access is requested solely when you choose to take a photo of an item to add it to your catalog, or when selecting an existing image from your photo gallery.
-      </li>
-      <li>
-        <strong>Device Diagnostics & Anonymous Identifiers</strong>: Standard, non-personal technical identifiers (such as device OS version, app version, and anonymous installation identifiers) may be processed to deliver updates, diagnose crashes, and prevent automated abuse of backend APIs.
-      </li>
-    </ul>
+    <!-- FRENCH CONTENT -->
+    <div id="privacy-fr" class="privacy-section" style="display: none;">
+      <header>
+        <span class="badge">Architecture axée sur la confidentialité</span>
+        <h1>Politique de confidentialité de PocketIndex</h1>
+        <p class="meta">Date d'entrée en vigueur : 27 septembre 2026 &bull; Application : PocketIndex (com.pocketindex.app)</p>
+      </header>
 
-    <h2>2. Artificial Intelligence (AI) Multimodal Processing</h2>
-    <p>
-      PocketIndex includes an optional AI scan feature that assists you in identifying items, extracting details, and pre-filling collection fields. When you submit a photo for AI analysis:
-    </p>
-    <ul>
-      <li>
-        <strong>Ephemeral Transmission</strong>: The captured image is compressed and securely transmitted over encrypted HTTPS to the Google Gemini API solely for real-time visual analysis and structured field extraction.
-      </li>
-      <li>
-        <strong>No Permanent Storage</strong>: Your photos are processed in memory and are <strong>not stored, archived, or retained</strong> on our servers after the response is generated.
-      </li>
-      <li>
-        <strong>EXIF & Metadata Stripping</strong>: Images are stripped of GPS coordinates and camera metadata client-side before transmission to safeguard your location privacy.
-      </li>
-      <li>
-        <strong>No Model Training on Private Collections</strong>: Your collection images are not used to train proprietary public models.
-      </li>
-    </ul>
+      <div class="highlight-box">
+        <h3>L'engagement de confidentialité de PocketIndex</h3>
+        <p>
+          PocketIndex est conçu selon une philosophie de confidentialité <strong>locale d'abord</strong> (local-first). Vos collections, dossiers personnalisés, notes, avis et photos restent strictement stockés sur votre appareil. Nous n'exploitons aucune base de données utilisateurs à distance et nous ne vendons, ne louons ni ne commercialisons jamais vos données personnelles.
+        </p>
+      </div>
 
-    <h2>3. Advertising & Third-Party Services</h2>
-    <p>
-      To support ongoing maintenance and provide free AI scan allowances, PocketIndex may display advertisements via Google AdMob:
-    </p>
-    <ul>
-      <li>
-        <strong>Google AdMob</strong>: Google AdMob may collect and process pseudonymous identifiers (such as the Android Advertising ID), approximate IP location, and app interaction events to serve contextual or personalized advertisements and prevent fraudulent ad traffic.
-      </li>
-      <li>
-        <strong>User Consent (GDPR / CCPA / UMP)</strong>: In jurisdictions subject to data privacy regulations (including the EU and California), users are presented with a consent management dialogue (Google User Messaging Platform) to choose between personalized ads, non-personalized ads, or ad opt-outs.
-      </li>
-      <li>
-        For more information on how Google handles advertising data, review <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener noreferrer">Google's Advertising Privacy & Terms</a>.
-      </li>
-    </ul>
+      <h2>1. Informations que nous traitons</h2>
+      <p>PocketIndex traite un minimum de données strictement nécessaires au catalogage de vos collections :</p>
+      <ul>
+        <li>
+          <strong>Données de collections et d'articles (stockées localement sur l'appareil)</strong> : Toutes les catégories, noms de dossiers, champs personnalisés, notes d'évaluation, dates d'acquisition, prix et photos sont enregistrés directement dans le stockage local de votre appareil (Android Scoped Storage / SQLite local). Ces données ne sont jamais synchronisées avec un serveur central sans votre action explicite.
+        </li>
+        <li>
+          <strong>Captures de l'appareil photo et photos</strong> : L'accès à l'appareil photo n'est requis que lorsque vous choisissez de photographier un objet pour l'ajouter à votre catalogue ou lors de la sélection d'une image depuis votre galerie photo.
+        </li>
+        <li>
+          <strong>Diagnostics de l'appareil et identifiants anonymes</strong> : Des identifiants techniques standards et non personnels (comme la version de l'OS, la version de l'app et des identifiants d'installation anonymes) peuvent être traités pour fournir des mises à jour, diagnostiquer les incidents et prévenir les abus automatisés de nos API.
+        </li>
+      </ul>
 
-    <h2>4. Data Retention & Deletion</h2>
-    <p>
-      Because your collection data resides locally on your device:
-    </p>
-    <ul>
-      <li>
-        <strong>Full User Control</strong>: You can edit or delete individual items, photos, or folders at any time directly within the app interface.
-      </li>
-      <li>
-        <strong>Complete Data Deletion</strong>: Uninstalling the PocketIndex application or clearing the application's storage in your Android System Settings immediately and permanently deletes all stored collections, records, and cached images from your device.
-      </li>
-      <li>
-        <strong>Offline Backups</strong>: If you export a backup archive via the app settings, the file is saved to your personal device storage or chosen cloud drive under your direct control.
-      </li>
-    </ul>
+      <h2>2. Traitement multimodal par intelligence artificielle (IA)</h2>
+      <p>
+        PocketIndex inclut une fonction d'analyse photo par IA pour identifier les objets, extraire des détails et pré-remplir les champs de collection. Lorsque vous soumettez une photo à l'analyse :
+      </p>
+      <ul>
+        <li>
+          <strong>Transmission éphémère</strong> : L'image capturée est compressée et transmise de manière sécurisée via HTTPS chiffré à l'API Google Gemini exclusivement pour l'analyse visuelle en temps réel et l'extraction de champs structurés.
+        </li>
+        <li>
+          <strong>Aucun stockage permanent</strong> : Vos photos sont traitées en mémoire vive et ne sont <strong>ni enregistrées, ni archivées, ni conservées</strong> sur nos serveurs après génération de la réponse.
+        </li>
+        <li>
+          <strong>Suppression des métadonnées et données EXIF</strong> : Les coordonnées GPS et métadonnées d'appareil sont purgées côté client avant transmission afin de protéger votre vie privée.
+        </li>
+        <li>
+          <strong>Aucun entraînement de modèle sur vos collections privées</strong> : Vos photos de collections ne sont pas utilisées pour entraîner des modèles publics propriétaires.
+        </li>
+      </ul>
 
-    <h2>5. Security of Your Information</h2>
-    <p>
-      We implement cryptographic HMAC request signing, encrypted HTTPS network transport for all API interactions, and on-device private folder locking (PIN protection) to ensure that your collection data remains secure and shielded from unauthorized local or network access.
-    </p>
+      <h2>3. Publicités et services tiers</h2>
+      <p>
+        Pour assurer la maintenance continue et offrir des quotas d'analyse IA gratuits, PocketIndex peut afficher des annonces via Google AdMob :
+      </p>
+      <ul>
+        <li>
+          <strong>Google AdMob</strong> : Google AdMob peut collecter et traiter des identifiants pseudonymes (tels que l'identifiant publicitaire Android), la localisation IP approximative et des événements d'interaction avec l'application pour diffuser des publicités contextuelles ou personnalisées et prévenir la fraude.
+        </li>
+        <li>
+          <strong>Consentement de l'utilisateur (RGPD / CCPA / UMP)</strong> : Dans les régions soumises à des réglementations sur les données personnelles (dont l'UE et la Californie), une boîte de dialogue de gestion du consentement (Google User Messaging Platform) permet aux utilisateurs de choisir entre annonces personnalisées, non personnalisées ou de refuser.
+        </li>
+        <li>
+          Pour plus de renseignements sur le traitement des données publicitaires par Google, consultez les <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener noreferrer">Règles de confidentialité et conditions d'utilisation de Google</a>.
+        </li>
+      </ul>
 
-    <h2>6. Children's Privacy</h2>
-    <p>
-      PocketIndex is designed for general audiences and collectors aged 13 and above. We do not knowingly collect or solicit personal identifiable information from children under the age of 13.
-    </p>
+      <h2>4. Conservation et suppression des données</h2>
+      <p>
+        Puisque l'ensemble de vos données de collection réside localement sur votre appareil :
+      </p>
+      <ul>
+        <li>
+          <strong>Contrôle total de l'utilisateur</strong> : Vous pouvez modifier ou supprimer des articles, photos ou dossiers à tout moment directement dans l'interface de l'application.
+        </li>
+        <li>
+          <strong>Suppression complète des données</strong> : Désinstaller PocketIndex ou effacer les données de stockage de l'application dans les Paramètres système Android supprime immédiatement et définitivement toutes les collections, enregistrements et images en cache de votre appareil.
+        </li>
+        <li>
+          <strong>Sauvegardes hors ligne</strong> : Si vous exportez une archive de sauvegarde via les paramètres de l'application, le fichier est enregistré sur votre espace de stockage personnel ou le cloud de votre choix sous votre contrôle exclusif.
+        </li>
+      </ul>
 
-    <h2>7. Changes to This Privacy Policy</h2>
-    <p>
-      We may occasionally update our Privacy Policy to reflect app enhancements, regulatory guidelines, or new platform features. Any updates will be published to this webpage with a revised "Effective Date".
-    </p>
+      <h2>5. Sécurité de vos informations</h2>
+      <p>
+        Nous appliquons la signature cryptographique des requêtes par HMAC, le transport réseau chiffré via HTTPS pour tous les échanges d'API et le verrouillage de dossiers privés sur l'appareil (protection par code PIN) pour garantir que vos collections restent protégées contre tout accès local ou réseau non autorisé.
+      </p>
 
-    <h2>8. Contact Us</h2>
-    <p>
-      If you have questions, feedback, or data privacy inquiries regarding PocketIndex, please reach out to us at:
-    </p>
-    <p>
-      <strong>Developer Support</strong>: <a href="mailto:pocketindex.support@gmail.com">pocketindex.support@gmail.com</a>
-    </p>
-    <p>
-      <strong>Community &amp; Feature Requests</strong>: <a href="https://github.com/pabouzakhm/PocketIndex/discussions" target="_blank" rel="noopener noreferrer">GitHub Discussions</a> &bull; <a href="https://github.com/pabouzakhm/PocketIndex/issues" target="_blank" rel="noopener noreferrer">Feature Requests</a>
-    </p>
+      <h2>6. Protection des mineurs</h2>
+      <p>
+        PocketIndex est conçu pour un public général et des collectionneurs âgés de 13 ans et plus. Nous ne collectons ni ne sollicitons sciemment aucune donnée personnelle auprès d'enfants de moins de 13 ans.
+      </p>
+
+      <h2>7. Modifications de cette politique de confidentialité</h2>
+      <p>
+        Nous pouvons occasionnellement mettre à jour notre politique de confidentialité pour refléter les améliorations apportées à l'application, les directives réglementaires ou de nouvelles fonctionnalités. Toute modification sera publiée sur cette page avec une date de révision mise à jour.
+      </p>
+
+      <h2>8. Nous contacter</h2>
+      <p>
+        Pour toute question, retour ou demande relative à la confidentialité de vos données dans PocketIndex, contactez-nous à :
+      </p>
+      <p>
+        <strong>Support développeur</strong> : <a href="mailto:pocketindex.support@gmail.com">pocketindex.support@gmail.com</a>
+      </p>
+      <p>
+        <strong>Communauté &amp; Demandes de fonctionnalités</strong> : <a href="https://github.com/pabouzakhm/PocketIndex/discussions" target="_blank" rel="noopener noreferrer">Discussions GitHub</a> &bull; <a href="https://github.com/pabouzakhm/PocketIndex/issues" target="_blank" rel="noopener noreferrer">Demandes de fonctionnalités</a>
+      </p>
+    </div>
+
+    <!-- SPANISH CONTENT -->
+    <div id="privacy-es" class="privacy-section" style="display: none;">
+      <header>
+        <span class="badge">Arquitectura orientada a la privacidad</span>
+        <h1>Política de Privacidad de PocketIndex</h1>
+        <p class="meta">Fecha de vigencia: 27 de septiembre de 2026 &bull; Aplicación: PocketIndex (com.pocketindex.app)</p>
+      </header>
+
+      <div class="highlight-box">
+        <h3>El compromiso de privacidad de PocketIndex</h3>
+        <p>
+          PocketIndex está diseñado con una filosofía de privacidad <strong>local primero</strong> (local-first). Tus colecciones, carpetas personalizadas, calificaciones, notas personales y bibliotecas de fotos permanecen almacenadas estrictamente en tu dispositivo. No gestionamos bases de datos remotas de usuarios, y nunca vendemos, alquilamos ni monetizamos tus datos personales.
+        </p>
+      </div>
+
+      <h2>1. Información que gestionamos</h2>
+      <p>PocketIndex procesa un conjunto mínimo de datos estrictamente necesarios para el catálogo de tus colecciones:</p>
+      <ul>
+        <li>
+          <strong>Datos de colecciones y artículos (almacenados localmente en el dispositivo)</strong>: Todas las categorías, nombres de carpetas, campos personalizados, valoraciones, fechas de adquisición, notas de precios y fotos se guardan directamente en el almacenamiento local de tu dispositivo (Android Scoped Storage / SQLite local). Esta información nunca se sincroniza con un servidor central sin tu acción explícita.
+        </li>
+        <li>
+          <strong>Capturas de cámara y fotos</strong>: El permiso de acceso a la cámara se solicita únicamente cuando eliges fotografiar un artículo para añadirlo a tu catálogo o cuando seleccionas una imagen existente de tu galería.
+        </li>
+        <li>
+          <strong>Diagnósticos del dispositivo e identificadores anónimos</strong>: Se pueden procesar identificadores técnicos estándar y no personales (como versión del sistema operativo, versión de la app e identificadores anónimos de instalación) para distribuir actualizaciones, diagnosticar fallos y prevenir abusos automatizados de nuestras API.
+        </li>
+      </ul>
+
+      <h2>2. Procesamiento multimodal de Inteligencia Artificial (IA)</h2>
+      <p>
+        PocketIndex incluye una función opcional de escaneo con IA que te ayuda a identificar artículos, extraer detalles y rellenar automáticamente los campos de tu colección. Al enviar una foto para análisis:
+      </p>
+      <ul>
+        <li>
+          <strong>Transmisión efímera</strong>: La imagen capturada se comprime y se transmite de forma segura mediante HTTPS cifrado a la API de Google Gemini exclusivamente para el análisis visual en tiempo real y la extracción de datos estructurados.
+        </li>
+        <li>
+          <strong>Sin almacenamiento permanente</strong>: Tus fotos se procesan en la memoria volátil y <strong>no se guardan, archivan ni conservan</strong> en nuestros servidores una vez generada la respuesta.
+        </li>
+        <li>
+          <strong>Eliminación de metadatos y datos EXIF</strong>: Las coordenadas GPS y los metadatos de la cámara se eliminan en el dispositivo antes de la transmisión para salvaguardar tu privacidad geográfica.
+        </li>
+        <li>
+          <strong>Sin entrenamiento de modelos con tus colecciones privadas</strong>: Las imágenes de tus colecciones no se utilizan para entrenar modelos públicos propietarios.
+        </li>
+      </ul>
+
+      <h2>3. Publicidad y servicios de terceros</h2>
+      <p>
+        Para sostener el mantenimiento continuo y ofrecer cuotas gratuitas de escaneo con IA, PocketIndex puede mostrar anuncios a través de Google AdMob:
+      </p>
+      <ul>
+        <li>
+          <strong>Google AdMob</strong>: Google AdMob puede recopilar y procesar identificadores seudónimos (como el ID de publicidad de Android), ubicación IP aproximada y eventos de interacción con la aplicación para mostrar anuncios contextuales o personalizados y prevenir fraudes.
+        </li>
+        <li>
+          <strong>Consentimiento del usuario (RGPD / CCPA / UMP)</strong>: En jurisdicciones sujetas a leyes de privacidad de datos (incluidas la UE y California), los usuarios cuentan con un diálogo de gestión de consentimiento (Google User Messaging Platform) para elegir entre anuncios personalizados, no personalizados o rechazarlos.
+        </li>
+        <li>
+          Para más detalles sobre cómo Google gestiona los datos de publicidad, consulta las <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener noreferrer">Políticas y condiciones de publicidad de Google</a>.
+        </li>
+      </ul>
+
+      <h2>4. Retención y eliminación de datos</h2>
+      <p>
+        Dado que todos tus datos de colección residen localmente en tu dispositivo:
+      </p>
+      <ul>
+        <li>
+          <strong>Control total del usuario</strong>: Puedes editar o eliminar artículos individuales, fotos o carpetas en cualquier momento directamente desde la interfaz de la aplicación.
+        </li>
+        <li>
+          <strong>Eliminación completa de datos</strong>: Desinstalar la aplicación PocketIndex o borrar el almacenamiento de la aplicación en los Ajustes del sistema Android elimina inmediata y permanentemente todas las colecciones, registros e imágenes en caché de tu dispositivo.
+        </li>
+        <li>
+          <strong>Copias de seguridad sin conexión</strong>: Si exportas un archivo de respaldo a través de los ajustes de la aplicación, el archivo se guarda en el almacenamiento de tu dispositivo o en la nube de tu elección bajo tu control exclusivo.
+        </li>
+      </ul>
+
+      <h2>5. Seguridad de tu información</h2>
+      <p>
+        Implementamos firma criptográfica de peticiones HMAC, transporte de red cifrado mediante HTTPS para todas las interacciones con la API y bloqueo de carpetas privadas en el dispositivo (protección mediante código PIN) para garantizar que los datos de tus colecciones permanezcan seguros y protegidos contra accesos no autorizados.
+      </p>
+
+      <h2>6. Privacidad de los menores</h2>
+      <p>
+        PocketIndex está pensado para el público en general y coleccionistas a partir de 13 años. No recopilamos ni solicitamos conscientemente información personal de niños menores de 13 años.
+      </p>
+
+      <h2>7. Cambios en esta política de privacidad</h2>
+      <p>
+        Podemos actualizar ocasionalmente nuestra Política de Privacidad para reflejar mejoras en la aplicación, exigencias normativas o nuevas funciones. Cualquier cambio se publicará en esta página web con una fecha de vigencia actualizada.
+      </p>
+
+      <h2>8. Contáctanos</h2>
+      <p>
+        Si tienes preguntas, sugerencias o consultas sobre la privacidad de tus datos en PocketIndex, escríbenos a:
+      </p>
+      <p>
+        <strong>Soporte al desarrollador</strong>: <a href="mailto:pocketindex.support@gmail.com">pocketindex.support@gmail.com</a>
+      </p>
+      <p>
+        <strong>Comunidad y Solicitudes de funciones</strong>: <a href="https://github.com/pabouzakhm/PocketIndex/discussions" target="_blank" rel="noopener noreferrer">Debates en GitHub</a> &bull; <a href="https://github.com/pabouzakhm/PocketIndex/issues" target="_blank" rel="noopener noreferrer">Solicitudes de funciones</a>
+      </p>
+    </div>
 
     <footer>
-      PocketIndex &bull; Designed for collectors, built for privacy.
+      <span id="footer-text">PocketIndex &bull; Designed for collectors, built for privacy.</span>
     </footer>
   </div>
+
+  <script>
+    const titles = {
+      en: "Privacy Policy — PocketIndex",
+      fr: "Politique de confidentialité — PocketIndex",
+      es: "Política de Privacidad — PocketIndex"
+    };
+
+    const backTexts = {
+      en: "Back to PocketIndex",
+      fr: "Retour à PocketIndex",
+      es: "Volver a PocketIndex"
+    };
+
+    const footerTexts = {
+      en: "PocketIndex • Designed for collectors, built for privacy.",
+      fr: "PocketIndex • Conçu pour les collectionneurs, pensé pour la confidentialité.",
+      es: "PocketIndex • Diseñado para coleccionistas, creado para la privacidad."
+    };
+
+    function setPrivacyLanguage(lang) {
+      if (!['en', 'fr', 'es'].includes(lang)) lang = 'en';
+      document.documentElement.lang = lang;
+      try {
+        localStorage.setItem('pocketindex_lang', lang);
+      } catch (e) {}
+
+      document.title = titles[lang] || titles.en;
+
+      ['en', 'fr', 'es'].forEach(l => {
+        const sec = document.getElementById(`privacy-${l}`);
+        if (sec) sec.style.display = (l === lang) ? 'block' : 'none';
+      });
+
+      const backTextEl = document.getElementById('back-text');
+      if (backTextEl) backTextEl.textContent = backTexts[lang] || backTexts.en;
+
+      const backLinkEl = document.getElementById('back-link');
+      if (backLinkEl) backLinkEl.href = `index.html?lang=${lang}`;
+
+      const footerTextEl = document.getElementById('footer-text');
+      if (footerTextEl) footerTextEl.textContent = footerTexts[lang] || footerTexts.en;
+
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        const isActive = btn.getAttribute('data-lang') === lang;
+        btn.classList.toggle('active', isActive);
+        btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+      });
+
+      if (window.history && window.history.replaceState) {
+        const url = new URL(window.location);
+        url.searchParams.set('lang', lang);
+        window.history.replaceState({}, '', url);
+      }
+    }
+
+    function initPrivacyLanguage() {
+      let savedLang = null;
+      try {
+        savedLang = localStorage.getItem('pocketindex_lang');
+      } catch (e) {}
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const urlLang = urlParams.get('lang');
+      const browserLang = (navigator.language || navigator.userLanguage || '').slice(0, 2).toLowerCase();
+
+      const initialLang = (urlLang && ['en', 'fr', 'es'].includes(urlLang))
+        ? urlLang
+        : (savedLang && ['en', 'fr', 'es'].includes(savedLang))
+          ? savedLang
+          : (browserLang === 'fr' || browserLang === 'es')
+            ? browserLang
+            : 'en';
+
+      setPrivacyLanguage(initialLang);
+
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          setPrivacyLanguage(btn.getAttribute('data-lang'));
+        });
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initPrivacyLanguage);
+    } else {
+      initPrivacyLanguage();
+    }
+  </script>
 </body>
 </html>
