@@ -58,7 +58,8 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 1.5rem 0;
+      gap: 2.5rem;
+      padding: 1.25rem 0;
       border-bottom: 1px solid var(--card-border);
     }
     .brand {
@@ -69,22 +70,35 @@
       font-weight: 800;
       letter-spacing: -0.02em;
       color: var(--text);
+      text-decoration: none;
+      flex-shrink: 0;
+      transition: opacity 0.2s ease;
+    }
+    .brand:hover {
+      opacity: 0.85;
+      color: var(--accent);
     }
     .brand img {
-      width: 36px;
-      height: 36px;
-      border-radius: 8px;
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
       border: 1px solid rgba(180, 83, 9, 0.25);
-      box-shadow: 0 4px 12px rgba(90, 70, 50, 0.12);
+      box-shadow: 0 3px 10px rgba(90, 70, 50, 0.12);
+      background: #181614;
+      display: block;
     }
     .nav-links {
       display: flex;
-      gap: 1.5rem;
+      align-items: center;
+      gap: 1.25rem;
       font-size: 0.9375rem;
       font-weight: 600;
+      white-space: nowrap;
     }
     .nav-links a {
       color: #44403c;
+      white-space: nowrap;
+      transition: color 0.2s ease;
     }
     .nav-links a:hover {
       color: var(--accent);
@@ -496,16 +510,69 @@
       color: var(--accent);
       box-shadow: 0 1px 4px rgba(90, 70, 50, 0.15);
     }
-    @media (max-width: 640px) {
+    @media (max-width: 1080px) {
+      .nav-extra {
+        display: none;
+      }
+      .nav-links {
+        gap: 0.95rem;
+        font-size: 0.875rem;
+      }
+    }
+    @media (max-width: 860px) {
+      nav {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.85rem;
+        padding: 1.1rem 0 0.9rem;
+      }
+      .brand {
+        font-size: 1.25rem;
+      }
+      .nav-links {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 0.45rem 0.6rem;
+        font-size: 0.8125rem;
+        white-space: normal;
+      }
+      .nav-links a {
+        padding: 0.35rem 0.75rem;
+        border-radius: 9999px;
+        background: #ece4d2;
+        border: 1px solid #ded5c1;
+        color: #2c2824;
+        white-space: nowrap;
+        transition: all 0.2s ease;
+      }
+      .nav-links a:hover,
+      .nav-links a:active {
+        background: #e2d7c0;
+        border-color: #b45309;
+        color: var(--accent);
+      }
       .lang-switcher {
         order: -1;
         margin: 0 0 0.25rem 0;
       }
+      .motto-stats {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+        padding-top: 1.5rem;
+      }
+      .footer-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+      }
+      .footer-links {
+        justify-content: center;
+      }
     }
     @media (max-width: 420px) {
-      .nav-extra {
-        display: none;
-      }
       .nav-links {
         gap: 0.35rem;
       }
@@ -523,16 +590,16 @@
 <body>
   <div class="container">
     <nav>
-      <div class="brand">
+      <a href="#" class="brand" title="PocketIndex">
         <img src="assets/icon.png" alt="PocketIndex Icon">
         PocketIndex
-      </div>
+      </a>
       <div class="nav-links">
         <a href="#features" data-i18n="navFeatures">Features</a>
         <a href="#preview"><span class="nav-extra" data-i18n="navAppPrefix">App </span><span data-i18n="navPreview">Preview</span></a>
         <a href="#recall"><span data-i18n="navRecall">Recall</span><span class="nav-extra" data-i18n="navCompanionSuffix"> Companion</span></a>
         <a href="https://github.com/pabouzakhm/PocketIndex/discussions" target="_blank" rel="noopener noreferrer"><span data-i18n="navCommunity">Community</span><span class="nav-extra" data-i18n="navDiscussionsSuffix"> &amp; Discussions</span></a>
-        <a href="https://github.com/pabouzakhm/PocketIndex/issues" target="_blank" rel="noopener noreferrer" data-i18n="navFeatureRequests">Feature Requests</a>
+        <a href="https://github.com/pabouzakhm/PocketIndex/issues" target="_blank" rel="noopener noreferrer"><span class="nav-extra" data-i18n="navRequestsPrefix">Feature </span><span data-i18n="navRequests">Requests</span></a>
         <a href="privacy.html" data-i18n="navPrivacy" id="nav-privacy-link">Privacy</a>
         <div class="lang-switcher" role="group" aria-label="Language selector">
           <button type="button" class="lang-btn active" data-lang="en">EN</button>
@@ -750,7 +817,8 @@
         navCompanionSuffix: " Companion",
         navCommunity: "Community",
         navDiscussionsSuffix: " & Discussions",
-        navFeatureRequests: "Feature Requests",
+        navRequestsPrefix: "Feature ",
+        navRequests: "Requests",
         navPrivacy: "Privacy",
         heroBadge: "★ Smart Archiving • Personal Reviews • Buy-Again Verdicts • Collection Value Tracking",
         heroTitle: "Keep inventory of what you love. Know if you'd <span>buy it again</span>.",
@@ -814,7 +882,8 @@
         navCompanionSuffix: " de mémoire",
         navCommunity: "Communauté",
         navDiscussionsSuffix: " & Discussions",
-        navFeatureRequests: "Demandes de fonctions",
+        navRequestsPrefix: "Demandes de ",
+        navRequests: "Fonctions",
         navPrivacy: "Confidentialité",
         heroBadge: "★ Archivage intelligent • Avis personnels • Verdicts de rachat • Suivi de valeur",
         heroTitle: "Gardez l'inventaire de ce que vous aimez. Sachez si vous le <span>rachèteriez</span>.",
@@ -878,7 +947,8 @@
         navCompanionSuffix: " de memoria",
         navCommunity: "Comunidad",
         navDiscussionsSuffix: " y Discusiones",
-        navFeatureRequests: "Solicitudes de funciones",
+        navRequestsPrefix: "Solicitudes de ",
+        navRequests: "Funciones",
         navPrivacy: "Privacidad",
         heroBadge: "★ Archivo inteligente • Reseñas personales • Veredictos de recompra • Valor de colección",
         heroTitle: "Mantén un inventario de lo que amas. Descubre si lo <span>comprarías de nuevo</span>.",
