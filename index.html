@@ -6,16 +6,21 @@
   <title>PocketIndex — Remember What You Love. Rate, Review & Buy Again.</title>
   <meta name="description" content="Keep inventory of what you love. Know if you'd buy it again and keep track of your collections with the information you want. Auto-populate details in seconds with AI.">
   <link rel="icon" type="image/png" href="assets/icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,400;1,600;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #090d16;
-      --card-bg: rgba(30, 41, 59, 0.7);
-      --card-border: rgba(255, 255, 255, 0.08);
-      --text: #f8fafc;
-      --text-muted: #94a3b8;
-      --accent: #38bdf8;
-      --accent-glow: rgba(56, 189, 248, 0.25);
-      --accent-gradient: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+      --bg: #f4eedd;
+      --bg-dots: #d3c8b0;
+      --card-bg: #ffffff;
+      --card-border: #ded5c1;
+      --text: #181614;
+      --text-muted: #57534e;
+      --accent: #842d0e;
+      --accent-hover: #b45309;
+      --accent-glow: rgba(180, 83, 9, 0.22);
+      --accent-gradient: linear-gradient(135deg, #842d0e 0%, #b45309 50%, #d97706 100%);
     }
     * {
       box-sizing: border-box;
@@ -23,15 +28,16 @@
       padding: 0;
     }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       background-color: var(--bg);
       color: var(--text);
       line-height: 1.6;
       overflow-x: hidden;
       background-image: 
-        radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.12) 0%, transparent 60%),
-        radial-gradient(circle at 80% 50%, rgba(129, 140, 248, 0.08) 0%, transparent 40%);
-      background-repeat: no-repeat;
+        radial-gradient(var(--bg-dots) 1.2px, transparent 1.2px),
+        radial-gradient(circle at 50% 0%, rgba(217, 119, 6, 0.08) 0%, transparent 60%);
+      background-size: 20px 20px, 100% 100%;
+      background-repeat: repeat, no-repeat;
     }
     a {
       color: var(--accent);
@@ -39,7 +45,7 @@
       transition: color 0.2s;
     }
     a:hover {
-      color: #7dd3fc;
+      color: var(--accent-hover);
     }
     .container {
       max-width: 1120px;
@@ -62,19 +68,26 @@
       font-size: 1.25rem;
       font-weight: 800;
       letter-spacing: -0.02em;
-      color: #fff;
+      color: var(--text);
     }
     .brand img {
       width: 36px;
       height: 36px;
       border-radius: 8px;
-      box-shadow: 0 4px 12px var(--accent-glow);
+      border: 1px solid rgba(180, 83, 9, 0.25);
+      box-shadow: 0 4px 12px rgba(90, 70, 50, 0.12);
     }
     .nav-links {
       display: flex;
       gap: 1.5rem;
       font-size: 0.9375rem;
-      font-weight: 500;
+      font-weight: 600;
+    }
+    .nav-links a {
+      color: #44403c;
+    }
+    .nav-links a:hover {
+      color: var(--accent);
     }
 
     /* Hero */
@@ -90,11 +103,11 @@
       font-size: 0.8125rem;
       font-weight: 600;
       color: var(--accent);
-      background: rgba(56, 189, 248, 0.1);
-      border: 1px solid rgba(56, 189, 248, 0.3);
+      background: rgba(180, 83, 9, 0.08);
+      border: 1px solid rgba(180, 83, 9, 0.25);
       border-radius: 9999px;
       margin-bottom: 1.5rem;
-      box-shadow: 0 0 20px rgba(56, 189, 248, 0.15);
+      box-shadow: 0 0 20px rgba(180, 83, 9, 0.1);
     }
     .hero h1 {
       font-size: clamp(2.25rem, 5vw, 3.75rem);
@@ -105,6 +118,7 @@
       max-width: 820px;
       margin-left: auto;
       margin-right: auto;
+      color: var(--text);
     }
     .hero h1 span {
       background: var(--accent-gradient);
@@ -120,8 +134,10 @@
     .hero-quote {
       display: block;
       margin-top: 0.85rem;
-      color: #7dd3fc;
-      font-weight: 500;
+      font-family: 'Newsreader', 'Playfair Display', Georgia, Cambria, serif;
+      font-size: 1.25rem;
+      color: #842d0e;
+      font-weight: 600;
       font-style: italic;
     }
     .hero-actions {
@@ -144,25 +160,27 @@
     }
     .btn-primary {
       background: var(--accent-gradient);
-      color: #090d16;
+      color: #ffffff;
       border: none;
       box-shadow: 0 4px 20px var(--accent-glow);
     }
     .btn-primary:hover {
-      color: #090d16;
+      color: #ffffff;
       transform: translateY(-2px);
-      box-shadow: 0 6px 25px rgba(56, 189, 248, 0.4);
+      box-shadow: 0 6px 25px rgba(180, 83, 9, 0.35);
     }
     .btn-secondary {
-      background: rgba(255, 255, 255, 0.05);
-      color: #fff;
+      background: #fbf7ee;
+      color: #2c2824;
       border: 1px solid var(--card-border);
-      backdrop-filter: blur(8px);
+      box-shadow: 0 2px 8px rgba(90, 70, 50, 0.05);
     }
     .btn-secondary:hover {
-      color: #fff;
-      background: rgba(255, 255, 255, 0.1);
+      color: var(--accent);
+      background: #ffffff;
+      border-color: #b45309;
       transform: translateY(-2px);
+      box-shadow: 0 4px 14px rgba(90, 70, 50, 0.1);
     }
 
     /* Hero Banner Image */
@@ -171,9 +189,9 @@
       margin: 0 auto;
       border-radius: 20px;
       overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6), 0 0 40px rgba(56, 189, 248, 0.15);
-      background: #111827;
+      border: 1px solid var(--card-border);
+      box-shadow: 0 25px 50px -12px rgba(90, 70, 50, 0.18), 0 0 30px rgba(180, 83, 9, 0.08);
+      background: #ffffff;
     }
     .hero-banner img {
       width: 100%;
@@ -195,6 +213,7 @@
       font-weight: 800;
       letter-spacing: -0.02em;
       margin-bottom: 0.75rem;
+      color: var(--text);
     }
     .section-header p {
       color: var(--text-muted);
@@ -209,12 +228,13 @@
       border: 1px solid var(--card-border);
       border-radius: 16px;
       padding: 2rem;
-      backdrop-filter: blur(12px);
-      transition: transform 0.2s, border-color 0.2s;
+      box-shadow: 0 4px 16px -2px rgba(90, 70, 50, 0.06), 0 2px 6px -1px rgba(90, 70, 50, 0.03);
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
     }
     .card:hover {
       transform: translateY(-4px);
-      border-color: rgba(56, 189, 248, 0.3);
+      border-color: rgba(180, 83, 9, 0.35);
+      box-shadow: 0 12px 28px -6px rgba(90, 70, 50, 0.12);
     }
     .card-icon {
       font-size: 1.75rem;
@@ -225,7 +245,7 @@
       font-size: 1.25rem;
       font-weight: 700;
       margin-bottom: 0.6rem;
-      color: #fff;
+      color: var(--text);
     }
     .card p {
       color: var(--text-muted);
@@ -236,12 +256,12 @@
     /* Motto / Value Highlight Banner */
     .motto-banner {
       margin: 4.5rem 0;
-      background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 41, 59, 0.85) 100%);
-      border: 1px solid rgba(56, 189, 248, 0.22);
+      background: linear-gradient(135deg, #fffdf8 0%, #f6f0df 100%);
+      border: 1px solid var(--card-border);
       border-radius: 20px;
       padding: 3.5rem 2rem;
       text-align: center;
-      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.35), 0 0 35px rgba(56, 189, 248, 0.08);
+      box-shadow: 0 12px 36px rgba(90, 70, 50, 0.08), 0 0 35px rgba(180, 83, 9, 0.05);
       position: relative;
       overflow: hidden;
     }
@@ -251,8 +271,8 @@
       top: 0;
       left: 15%;
       right: 15%;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.5), transparent);
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(180, 83, 9, 0.45), transparent);
     }
     .motto-badge {
       display: inline-block;
@@ -261,18 +281,19 @@
       font-size: 0.75rem;
       font-weight: 700;
       color: var(--accent);
-      background: rgba(56, 189, 248, 0.1);
-      border: 1px solid rgba(56, 189, 248, 0.25);
+      background: rgba(180, 83, 9, 0.08);
+      border: 1px solid rgba(180, 83, 9, 0.25);
       border-radius: 9999px;
       padding: 0.25rem 0.85rem;
       margin-bottom: 1.25rem;
     }
     .motto-quote {
+      font-family: 'Newsreader', 'Playfair Display', Georgia, Cambria, serif;
       font-size: clamp(1.4rem, 3.2vw, 2.1rem);
       font-weight: 800;
       line-height: 1.35;
       letter-spacing: -0.02em;
-      color: #fff;
+      color: var(--text);
       max-width: 820px;
       margin: 0 auto 1.1rem;
     }
@@ -339,15 +360,15 @@
       max-width: 255px;
       border-radius: 28px;
       overflow: hidden;
-      border: 3px solid rgba(255, 255, 255, 0.12);
-      box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.65), 0 0 24px rgba(56, 189, 248, 0.1);
-      background: #111827;
+      border: 3px solid var(--card-border);
+      box-shadow: 0 16px 36px -8px rgba(90, 70, 50, 0.16), 0 0 20px rgba(180, 83, 9, 0.08);
+      background: #ffffff;
       transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
     }
     .phone-frame:hover {
       transform: translateY(-8px) scale(1.02);
-      border-color: rgba(56, 189, 248, 0.45);
-      box-shadow: 0 24px 48px -8px rgba(0, 0, 0, 0.75), 0 0 32px rgba(56, 189, 248, 0.22);
+      border-color: #b45309;
+      box-shadow: 0 22px 45px -8px rgba(90, 70, 50, 0.24), 0 0 28px rgba(180, 83, 9, 0.18);
     }
     .phone-frame img {
       width: 100%;
@@ -361,7 +382,7 @@
     .screenshot-info h4 {
       font-size: 1rem;
       font-weight: 700;
-      color: #fff;
+      color: var(--text);
       margin-bottom: 0.35rem;
     }
     .screenshot-info p {
@@ -388,6 +409,12 @@
       display: flex;
       gap: 1.5rem;
     }
+    .footer-links a {
+      color: var(--text-muted);
+    }
+    .footer-links a:hover {
+      color: var(--accent);
+    }
 
     /* Mobile Responsive */
     @media (max-width: 640px) {
@@ -411,16 +438,16 @@
       .nav-links a {
         padding: 0.35rem 0.75rem;
         border-radius: 9999px;
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        color: #e2e8f0;
+        background: #ece4d2;
+        border: 1px solid #ded5c1;
+        color: #2c2824;
         white-space: nowrap;
         transition: all 0.2s ease;
       }
       .nav-links a:hover,
       .nav-links a:active {
-        background: rgba(56, 189, 248, 0.15);
-        border-color: rgba(56, 189, 248, 0.35);
+        background: #e2d7c0;
+        border-color: #b45309;
         color: var(--accent);
       }
       .motto-stats {
@@ -438,6 +465,43 @@
         justify-content: center;
       }
     }
+    /* Language Switcher */
+    .lang-switcher {
+      display: inline-flex;
+      align-items: center;
+      background: #ece4d2;
+      border: 1px solid #ded5c1;
+      border-radius: 9999px;
+      padding: 2px;
+      gap: 2px;
+      margin-left: 0.35rem;
+    }
+    .lang-btn {
+      background: transparent;
+      border: none;
+      border-radius: 9999px;
+      padding: 0.22rem 0.55rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #635e59;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+    .lang-btn:hover {
+      color: var(--accent);
+    }
+    .lang-btn.active {
+      background: #ffffff;
+      color: var(--accent);
+      box-shadow: 0 1px 4px rgba(90, 70, 50, 0.15);
+    }
+    @media (max-width: 640px) {
+      .lang-switcher {
+        order: -1;
+        margin: 0 0 0.25rem 0;
+      }
+    }
     @media (max-width: 420px) {
       .nav-extra {
         display: none;
@@ -448,6 +512,10 @@
       .nav-links a {
         padding: 0.3rem 0.55rem;
         font-size: 0.75rem;
+      }
+      .lang-btn {
+        padding: 0.18rem 0.45rem;
+        font-size: 0.7rem;
       }
     }
   </style>
@@ -460,37 +528,42 @@
         PocketIndex
       </div>
       <div class="nav-links">
-        <a href="#features">Features</a>
-        <a href="#preview"><span class="nav-extra">App </span>Preview</a>
-        <a href="#recall">Recall<span class="nav-extra"> Companion</span></a>
-        <a href="https://github.com/pabouzakhm/PocketIndex/discussions" target="_blank" rel="noopener noreferrer">Community<span class="nav-extra"> &amp; Discussions</span></a>
-        <a href="https://github.com/pabouzakhm/PocketIndex/issues" target="_blank" rel="noopener noreferrer">Feature<span class="nav-extra"> Requests</span></a>
-        <a href="privacy.html">Privacy</a>
+        <a href="#features" data-i18n="navFeatures">Features</a>
+        <a href="#preview"><span class="nav-extra" data-i18n="navAppPrefix">App </span><span data-i18n="navPreview">Preview</span></a>
+        <a href="#recall"><span data-i18n="navRecall">Recall</span><span class="nav-extra" data-i18n="navCompanionSuffix"> Companion</span></a>
+        <a href="https://github.com/pabouzakhm/PocketIndex/discussions" target="_blank" rel="noopener noreferrer"><span data-i18n="navCommunity">Community</span><span class="nav-extra" data-i18n="navDiscussionsSuffix"> &amp; Discussions</span></a>
+        <a href="https://github.com/pabouzakhm/PocketIndex/issues" target="_blank" rel="noopener noreferrer" data-i18n="navFeatureRequests">Feature Requests</a>
+        <a href="privacy.html" data-i18n="navPrivacy" id="nav-privacy-link">Privacy</a>
+        <div class="lang-switcher" role="group" aria-label="Language selector">
+          <button type="button" class="lang-btn active" data-lang="en">EN</button>
+          <button type="button" class="lang-btn" data-lang="fr">FR</button>
+          <button type="button" class="lang-btn" data-lang="es">ES</button>
+        </div>
       </div>
     </nav>
 
     <header class="hero">
       <div class="badge-pill">
-        <span>★ Smart Archiving • Personal Reviews • Buy-Again Verdicts • Collection Value Tracking</span>
+        <span data-i18n="heroBadge">★ Smart Archiving • Personal Reviews • Buy-Again Verdicts • Collection Value Tracking</span>
       </div>
-      <h1>Keep inventory of what you love. Know if you'd <span>buy it again</span>.</h1>
+      <h1 data-i18n-html="heroTitle">Keep inventory of what you love. Know if you'd <span>buy it again</span>.</h1>
       <p>
-        Snap a photo to auto-populate details in seconds, rate your experience, and log honest feedback so you never wonder again:
-        <span class="hero-quote">&ldquo;Did I like this, what did I pay, and should I buy it again?&rdquo;</span>
-        From coffee and drinks to hot sauces, books, and gear—track everyday reviews or manage valuable collections with custom fields and flexible templates. The possibilities are endless.
+        <span data-i18n="heroIntro">Snap a photo to auto-populate details in seconds, rate your experience, and log honest feedback so you never wonder again:</span>
+        <span class="hero-quote" data-i18n-html="heroQuote">&ldquo;Did I like this, what did I pay, and should I buy it again?&rdquo;</span>
+        <span data-i18n="heroOutro">From coffee and drinks to hot sauces, books, and gear—track everyday reviews or manage valuable collections with custom fields and flexible templates. The possibilities are endless.</span>
       </p>
       <div class="hero-actions">
         <span class="btn btn-primary" style="cursor: default;">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
             <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
           </svg>
-          Google Play Store (Coming Soon)
+          <span data-i18n="heroBtnPlayStore">Google Play Store (Coming Soon)</span>
         </span>
         <a href="https://github.com/pabouzakhm/PocketIndex/discussions" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
             <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
           </svg>
-          Discussions &amp; Feature Requests
+          <span data-i18n="heroBtnDiscussions">Discussions &amp; Feature Requests</span>
         </a>
       </div>
 
@@ -501,55 +574,55 @@
 
     <section class="features" id="features">
       <div class="section-header">
-        <h2>Built for the Things You Enjoy</h2>
-        <p>A smart personal inventory and journal that does the heavy lifting for you—AI auto-fills item details and specs, leaving you to log your own honest reviews and ratings.</p>
+        <h2 data-i18n="featuresHeading">Built for the Things You Enjoy</h2>
+        <p data-i18n="featuresSubheading">A smart personal inventory and journal that does the heavy lifting for you—AI auto-fills item details and specs, leaving you to log your own honest reviews and ratings.</p>
       </div>
 
       <div class="grid">
         <div class="card">
           <div class="card-icon">🎯</div>
-          <h3>Know If You'd Buy Again</h3>
-          <p>
+          <h3 data-i18n="card1Title">Know If You'd Buy Again</h3>
+          <p data-i18n-html="card1Text">
             Never stand in an aisle or browse an online store wondering if you liked that coffee roast, drink, or hot sauce. Log instant &ldquo;Buy Again&rdquo; verdicts, price paid, and ratings so you always make the right choice next time.
           </p>
         </div>
 
         <div class="card">
           <div class="card-icon">⚡</div>
-          <h3>Auto-Populate in Seconds</h3>
-          <p>
+          <h3 data-i18n="card2Title">Auto-Populate in Seconds</h3>
+          <p data-i18n="card2Text">
             Cataloging shouldn't feel like manual data entry. Point your camera at any label, bottle, package, or cover—multimodal AI vision instantly identifies the item, style, maker, and technical specifications with zero typing.
           </p>
         </div>
 
         <div class="card">
           <div class="card-icon">📝</div>
-          <h3>Honest Feedback & Pros/Cons</h3>
-          <p>
+          <h3 data-i18n="card3Title">Honest Feedback & Pros/Cons</h3>
+          <p data-i18n="card3Text">
             Capture real impressions while they're fresh. Record pros, cons, and personal notes tailored to each category so you always have a trustworthy guide of what worked and what didn't.
           </p>
         </div>
 
         <div class="card">
           <div class="card-icon">💎</div>
-          <h3>Two Tracking Modes: Reviews or Vaults</h3>
-          <p>
+          <h3 data-i18n="card4Title">Two Tracking Modes: Reviews or Vaults</h3>
+          <p data-i18n="card4Text">
             Choose between Review-based trackers (ratings, buy-again verdicts, price paid) or Collection-based vaults (condition grades, editions, and estimated market values).
           </p>
         </div>
 
         <div class="card">
           <div class="card-icon">🎛️</div>
-          <h3>Fully Customizable Details*</h3>
-          <p>
+          <h3 data-i18n="card5Title">Fully Customizable Details*</h3>
+          <p data-i18n="card5Text">
             The sky is the limit. Use pre-configured templates or create your own folders from scratch. Choose your auto-populated fields* and add bespoke attributes to track whatever matters to you.
           </p>
         </div>
 
         <div class="card">
           <div class="card-icon">📱</div>
-          <h3>Fast, Offline & Local-First</h3>
-          <p>
+          <h3 data-i18n="card6Title">Fast, Offline & Local-First</h3>
+          <p data-i18n="card6Text">
             Your personal inventory opens instantly and works anywhere, even completely offline. No sluggish cloud round-trips or mandatory logins—your notes and photos stay safely on your device.
           </p>
         </div>
@@ -558,8 +631,8 @@
 
     <section class="screenshots-section" id="preview">
       <div class="section-header">
-        <h2>Tailored to Whatever You Track</h2>
-        <p>From personalized onboarding to custom preset folders and a unified home gallery—see how PocketIndex adapts to your passions.</p>
+        <h2 data-i18n="previewHeading">Tailored to Whatever You Track</h2>
+        <p data-i18n="previewSubheading">From personalized onboarding to custom preset folders and a unified home gallery—see how PocketIndex adapts to your passions.</p>
       </div>
 
       <div class="screenshots-grid">
@@ -568,8 +641,8 @@
             <img src="assets/screenshots/01-tailor-what-to-track.png" alt="Tailor Your Experience" loading="lazy">
           </div>
           <div class="screenshot-info">
-            <h4>1. Tailor Your Focus</h4>
-            <p>Tell the app what you love tracking, and it configures the right folders from day one.</p>
+            <h4 data-i18n="screen1Title">1. Tailor Your Focus</h4>
+            <p data-i18n="screen1Text">Tell the app what you love tracking, and it configures the right folders from day one.</p>
           </div>
         </div>
 
@@ -578,8 +651,8 @@
             <img src="assets/screenshots/02-recommended-folders.png" alt="Curated Preset Templates" loading="lazy">
           </div>
           <div class="screenshot-info">
-            <h4>2. Instant Preset Templates</h4>
-            <p>Ready-to-use templates with tailored fields for board games, restaurant dishes, and collection vaults.</p>
+            <h4 data-i18n="screen2Title">2. Instant Preset Templates</h4>
+            <p data-i18n="screen2Text">Ready-to-use templates with tailored fields for board games, restaurant dishes, and collection vaults.</p>
           </div>
         </div>
 
@@ -588,8 +661,8 @@
             <img src="assets/screenshots/03-explore-more-folders.png" alt="Endless Categories" loading="lazy">
           </div>
           <div class="screenshot-info">
-            <h4>3. Endless Categories</h4>
-            <p>Add specialty coffee, hot sauces, beauty products, BBQ sauce, or build your own custom folder.</p>
+            <h4 data-i18n="screen3Title">3. Endless Categories</h4>
+            <p data-i18n="screen3Text">Add specialty coffee, hot sauces, beauty products, BBQ sauce, or build your own custom folder.</p>
           </div>
         </div>
 
@@ -598,40 +671,40 @@
             <img src="assets/screenshots/04-personal-inventory-home.png" alt="Unified Home Gallery" loading="lazy">
           </div>
           <div class="screenshot-info">
-            <h4>4. Your Personal Inventory</h4>
-            <p>A unified visual home for all your review logs, ratings, and collection values side-by-side.</p>
+            <h4 data-i18n="screen4Title">4. Your Personal Inventory</h4>
+            <p data-i18n="screen4Text">A unified visual home for all your review logs, ratings, and collection values side-by-side.</p>
           </div>
         </div>
       </div>
     </section>
 
     <div class="motto-banner" id="recall">
-      <div class="motto-badge">Your Recall Companion</div>
-      <h2 class="motto-quote">&ldquo;Your tool for remembering everything you've ever tasted, tried, collected and loved.&rdquo;</h2>
-      <p class="motto-subtext">
+      <div class="motto-badge" data-i18n="mottoBadge">Your Recall Companion</div>
+      <h2 class="motto-quote" data-i18n-html="mottoQuote">&ldquo;Your tool for remembering everything you've ever tasted, tried, collected and loved.&rdquo;</h2>
+      <p class="motto-subtext" data-i18n="mottoSubtext">
         Whether it's the perfect espresso roast, a standout hot sauce, a favorite board game, clothing, antiques, or collectibles—PocketIndex keeps your impressions and collections organized so you always remember what you have, what you've tried and what made the cut.
       </p>
       <div class="motto-stats">
         <div class="stat-item">
-          <span class="stat-number">&lt; 2s</span>
-          <span class="stat-label">AI Auto-Fill</span>
+          <span class="stat-number" data-i18n="stat1Val">&lt; 2s</span>
+          <span class="stat-label" data-i18n="stat1Lbl">AI Auto-Fill</span>
         </div>
         <div class="stat-item">
-          <span class="stat-number">Custom</span>
-          <span class="stat-label">Choose Auto-Populated Fields*</span>
+          <span class="stat-number" data-i18n="stat2Val">Custom</span>
+          <span class="stat-label" data-i18n="stat2Lbl">Choose Auto-Populated Fields*</span>
         </div>
         <div class="stat-item">
-          <span class="stat-number">Offline</span>
-          <span class="stat-label">Instant Access</span>
+          <span class="stat-number" data-i18n="stat3Val">Offline</span>
+          <span class="stat-label" data-i18n="stat3Lbl">Instant Access</span>
         </div>
       </div>
-      <p class="motto-footnote">*Certain limits apply.</p>
+      <p class="motto-footnote" data-i18n="mottoFootnote">*Certain limits apply.</p>
     </div>
 
     <div class="motto-banner" id="community" style="margin-top: 3.5rem;">
-      <div class="motto-badge">Community &amp; Open Feedback</div>
-      <h2 class="motto-quote" style="font-size: clamp(1.3rem, 2.8vw, 1.8rem);">&ldquo;Help shape the future of PocketIndex.&rdquo;</h2>
-      <p class="motto-subtext">
+      <div class="motto-badge" data-i18n="communityBadge">Community &amp; Open Feedback</div>
+      <h2 class="motto-quote" style="font-size: clamp(1.3rem, 2.8vw, 1.8rem);" data-i18n-html="communityQuote">&ldquo;Help shape the future of PocketIndex.&rdquo;</h2>
+      <p class="motto-subtext" data-i18n="communitySubtext">
         Vote on upcoming features, suggest templates, and join discussions directly with our development team on GitHub.
       </p>
       <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
@@ -639,30 +712,306 @@
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
             <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
           </svg>
-          GitHub Discussions
+          <span data-i18n="communityDiscussions">GitHub Discussions</span>
         </a>
         <a href="https://github.com/pabouzakhm/PocketIndex/issues" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
             <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
           </svg>
-          Feature Requests
+          <span data-i18n="communityIssues">Feature Requests</span>
         </a>
       </div>
     </div>
 
     <footer>
       <div class="footer-content">
-        <div>
+        <div data-i18n="footerTagline">
           PocketIndex • Built to help you remember the things you love.
         </div>
         <div class="footer-links">
-          <a href="https://github.com/pabouzakhm/PocketIndex/discussions" target="_blank" rel="noopener noreferrer">GitHub Discussions</a>
-          <a href="https://github.com/pabouzakhm/PocketIndex/issues" target="_blank" rel="noopener noreferrer">Feature Requests</a>
-          <a href="privacy.html">Privacy Policy</a>
-          <a href="mailto:pocketindex.support@gmail.com">Contact: pocketindex.support@gmail.com</a>
+          <a href="https://github.com/pabouzakhm/PocketIndex/discussions" target="_blank" rel="noopener noreferrer" data-i18n="footerDiscussions">GitHub Discussions</a>
+          <a href="https://github.com/pabouzakhm/PocketIndex/issues" target="_blank" rel="noopener noreferrer" data-i18n="footerIssues">Feature Requests</a>
+          <a href="privacy.html" data-i18n="footerPrivacy" id="footer-privacy-link">Privacy Policy</a>
+          <a href="mailto:pocketindex.support@gmail.com" data-i18n="footerContact">Contact: pocketindex.support@gmail.com</a>
         </div>
       </div>
     </footer>
   </div>
+
+  <script>
+    const translations = {
+      en: {
+        pageTitle: "PocketIndex — Remember What You Love. Rate, Review & Buy Again.",
+        pageDesc: "Keep inventory of what you love. Know if you'd buy it again and keep track of your collections with the information you want. Auto-populate details in seconds with AI.",
+        navFeatures: "Features",
+        navAppPrefix: "App ",
+        navPreview: "Preview",
+        navRecall: "Recall",
+        navCompanionSuffix: " Companion",
+        navCommunity: "Community",
+        navDiscussionsSuffix: " & Discussions",
+        navFeatureRequests: "Feature Requests",
+        navPrivacy: "Privacy",
+        heroBadge: "★ Smart Archiving • Personal Reviews • Buy-Again Verdicts • Collection Value Tracking",
+        heroTitle: "Keep inventory of what you love. Know if you'd <span>buy it again</span>.",
+        heroIntro: "Snap a photo to auto-populate details in seconds, rate your experience, and log honest feedback so you never wonder again:",
+        heroQuote: "&ldquo;Did I like this, what did I pay, and should I buy it again?&rdquo;",
+        heroOutro: "From coffee and drinks to hot sauces, books, and gear—track everyday reviews or manage valuable collections with custom fields and flexible templates. The possibilities are endless.",
+        heroBtnPlayStore: "Google Play Store (Coming Soon)",
+        heroBtnDiscussions: "Discussions & Feature Requests",
+        featuresHeading: "Built for the Things You Enjoy",
+        featuresSubheading: "A smart personal inventory and journal that does the heavy lifting for you—AI auto-fills item details and specs, leaving you to log your own honest reviews and ratings.",
+        card1Title: "Know If You'd Buy Again",
+        card1Text: "Never stand in an aisle or browse an online store wondering if you liked that coffee roast, drink, or hot sauce. Log instant &ldquo;Buy Again&rdquo; verdicts, price paid, and ratings so you always make the right choice next time.",
+        card2Title: "Auto-Populate in Seconds",
+        card2Text: "Cataloging shouldn't feel like manual data entry. Point your camera at any label, bottle, package, or cover—multimodal AI vision instantly identifies the item, style, maker, and technical specifications with zero typing.",
+        card3Title: "Honest Feedback & Pros/Cons",
+        card3Text: "Capture real impressions while they're fresh. Record pros, cons, and personal notes tailored to each category so you always have a trustworthy guide of what worked and what didn't.",
+        card4Title: "Two Tracking Modes: Reviews or Vaults",
+        card4Text: "Choose between Review-based trackers (ratings, buy-again verdicts, price paid) or Collection-based vaults (condition grades, editions, and estimated market values).",
+        card5Title: "Fully Customizable Details*",
+        card5Text: "The sky is the limit. Use pre-configured templates or create your own folders from scratch. Choose your auto-populated fields* and add bespoke attributes to track whatever matters to you.",
+        card6Title: "Fast, Offline & Local-First",
+        card6Text: "Your personal inventory opens instantly and works anywhere, even completely offline. No sluggish cloud round-trips or mandatory logins—your notes and photos stay safely on your device.",
+        previewHeading: "Tailored to Whatever You Track",
+        previewSubheading: "From personalized onboarding to custom preset folders and a unified home gallery—see how PocketIndex adapts to your passions.",
+        screen1Title: "1. Tailor Your Focus",
+        screen1Text: "Tell the app what you love tracking, and it configures the right folders from day one.",
+        screen2Title: "2. Instant Preset Templates",
+        screen2Text: "Ready-to-use templates with tailored fields for board games, restaurant dishes, and collection vaults.",
+        screen3Title: "3. Endless Categories",
+        screen3Text: "Add specialty coffee, hot sauces, beauty products, BBQ sauce, or build your own custom folder.",
+        screen4Title: "4. Your Personal Inventory",
+        screen4Text: "A unified visual home for all your review logs, ratings, and collection values side-by-side.",
+        mottoBadge: "Your Recall Companion",
+        mottoQuote: "&ldquo;Your tool for remembering everything you've ever tasted, tried, collected and loved.&rdquo;",
+        mottoSubtext: "Whether it's the perfect espresso roast, a standout hot sauce, a favorite board game, clothing, antiques, or collectibles—PocketIndex keeps your impressions and collections organized so you always remember what you have, what you've tried and what made the cut.",
+        stat1Val: "< 2s",
+        stat1Lbl: "AI Auto-Fill",
+        stat2Val: "Custom",
+        stat2Lbl: "Choose Auto-Populated Fields*",
+        stat3Val: "Offline",
+        stat3Lbl: "Instant Access",
+        mottoFootnote: "*Certain limits apply.",
+        communityBadge: "Community & Open Feedback",
+        communityQuote: "&ldquo;Help shape the future of PocketIndex.&rdquo;",
+        communitySubtext: "Vote on upcoming features, suggest templates, and join discussions directly with our development team on GitHub.",
+        communityDiscussions: "GitHub Discussions",
+        communityIssues: "Feature Requests",
+        footerTagline: "PocketIndex • Built to help you remember the things you love.",
+        footerDiscussions: "GitHub Discussions",
+        footerIssues: "Feature Requests",
+        footerPrivacy: "Privacy Policy",
+        footerContact: "Contact: pocketindex.support@gmail.com"
+      },
+      fr: {
+        pageTitle: "PocketIndex — Souvenez-vous de ce que vous aimez. Notez, évaluez et rachetez.",
+        pageDesc: "Gardez l'inventaire de ce que vous aimez. Sachez si vous le rachèteriez et suivez vos collections avec les détails souhaités. Remplissage auto en quelques secondes avec l'IA.",
+        navFeatures: "Fonctionnalités",
+        navAppPrefix: "Aperçu de ",
+        navPreview: "l'App",
+        navRecall: "Compagnon",
+        navCompanionSuffix: " de mémoire",
+        navCommunity: "Communauté",
+        navDiscussionsSuffix: " & Discussions",
+        navFeatureRequests: "Demandes de fonctions",
+        navPrivacy: "Confidentialité",
+        heroBadge: "★ Archivage intelligent • Avis personnels • Verdicts de rachat • Suivi de valeur",
+        heroTitle: "Gardez l'inventaire de ce que vous aimez. Sachez si vous le <span>rachèteriez</span>.",
+        heroIntro: "Prenez une photo pour remplir automatiquement les détails en quelques secondes, notez votre expérience et consignez des avis sincères pour ne plus jamais vous demander :",
+        heroQuote: "&laquo; Est-ce que j'ai aimé ceci, combien ai-je payé et devrais-je le racheter ? &raquo;",
+        heroOutro: "Du café aux boissons, en passant par les sauces piquantes, les livres et l'équipement : suivez vos avis quotidiens ou gérez des collections précieuses avec des champs personnalisés et des modèles flexibles. Les possibilités sont infinies.",
+        heroBtnPlayStore: "Google Play Store (Bientôt disponible)",
+        heroBtnDiscussions: "Discussions & Demandes de fonctions",
+        featuresHeading: "Conçu pour les choses que vous aimez",
+        featuresSubheading: "Un inventaire personnel et un carnet intelligent qui fait le gros du travail : l'IA remplit automatiquement les détails et spécifications, vous laissant consigner vos avis et notes en toute franchise.",
+        card1Title: "Sachez si vous le rachèteriez",
+        card1Text: "Ne vous demandez plus jamais dans un rayon ou en ligne si vous aviez aimé ce café, cette boisson ou cette sauce piquante. Enregistrez des verdicts instantanés « À racheter », le prix payé et vos notes pour faire le bon choix à chaque fois.",
+        card2Title: "Remplissage auto en quelques secondes",
+        card2Text: "Inventorier ne devrait pas être une saisie manuelle fastidieuse. Pointez votre appareil photo vers une étiquette, une bouteille, un emballage ou une couverture : l'IA multimodale identifie instantanément l'article, le style, le fabricant et les caractéristiques sans rien taper.",
+        card3Title: "Avis sincères et Pour/Contre",
+        card3Text: "Capturez vos impressions sur le vif. Notez les points forts, les inconvénients et des remarques personnalisées adaptées à chaque catégorie pour disposer d'un guide fiable de ce qui vous a plu ou déçu.",
+        card4Title: "Deux modes de suivi : Avis ou Coffres",
+        card4Text: "Choisissez entre les carnets d'avis (notes, verdict de rachat, prix payé) ou les coffres de collection (état de conservation, éditions et valeur marchande estimée).",
+        card5Title: "Détails entièrement personnalisables*",
+        card5Text: "Les possibilités sont infinies. Utilisez des modèles prêts à l'emploi ou créez vos propres dossiers de zéro. Choisissez vos champs auto-remplis* et ajoutez des attributs sur mesure pour suivre ce qui compte pour vous.",
+        card6Title: "Rapide, hors ligne et local d'abord",
+        card6Text: "Votre inventaire s'ouvre instantanément et fonctionne partout, même complètement hors ligne. Pas d'allers-retours cloud lents ni de connexion obligatoire : vos notes et photos restent en sécurité sur votre appareil.",
+        previewHeading: "Adapté à toutes vos passions",
+        previewSubheading: "De l'intégration personnalisée aux dossiers prédéfinis et à la galerie d'accueil unifiée : découvrez comment PocketIndex s'adapte à vos passions.",
+        screen1Title: "1. Personnalisez votre profil",
+        screen1Text: "Indiquez à l'application ce que vous aimez suivre, et elle configure les bons dossiers dès le premier jour.",
+        screen2Title: "2. Modèles prédéfinis instantanés",
+        screen2Text: "Des modèles prêts à l'emploi avec des champs sur mesure pour les jeux de société, plats de restaurant et coffres de collection.",
+        screen3Title: "3. Catégories illimitées",
+        screen3Text: "Ajoutez cafés de spécialité, sauces piquantes, produits de beauté, sauces barbecue ou créez votre dossier sur mesure.",
+        screen4Title: "4. Votre inventaire personnel",
+        screen4Text: "Un espace visuel unifié pour tous vos journaux d'avis, notes et valeurs de collection côte à côte.",
+        mottoBadge: "Votre compagnon de mémoire",
+        mottoQuote: "&laquo; Votre carnet pour vous souvenir de tout ce que vous avez goûté, essayé, collectionné et aimé. &raquo;",
+        mottoSubtext: "Qu'il s'agisse de l'expresso parfait, d'une sauce piquante mémorable, d'un jeu de société favori, de vêtements, d'antiquités ou d'objets de collection : PocketIndex organise vos impressions et vos trésors pour que vous sachiez toujours ce que vous possédez, ce que vous avez testé et ce qui en valait la peine.",
+        stat1Val: "< 2s",
+        stat1Lbl: "Remplissage IA",
+        stat2Val: "Sur mesure",
+        stat2Lbl: "Champs auto-remplis au choix*",
+        stat3Val: "Hors ligne",
+        stat3Lbl: "Accès instantané",
+        mottoFootnote: "*Certaines limites s'appliquent.",
+        communityBadge: "Communauté & Retours ouverts",
+        communityQuote: "&laquo; Contribuez à façonner l'avenir de PocketIndex. &raquo;",
+        communitySubtext: "Votez pour les futures fonctionnalités, proposez des modèles et échangez directement avec notre équipe de développement sur GitHub.",
+        communityDiscussions: "Discussions GitHub",
+        communityIssues: "Demandes de fonctions",
+        footerTagline: "PocketIndex • Conçu pour vous aider à vous souvenir des choses que vous aimez.",
+        footerDiscussions: "Discussions GitHub",
+        footerIssues: "Demandes de fonctions",
+        footerPrivacy: "Politique de confidentialité",
+        footerContact: "Contact : pocketindex.support@gmail.com"
+      },
+      es: {
+        pageTitle: "PocketIndex — Recuerda lo que amas. Califica, reseña y compra de nuevo.",
+        pageDesc: "Mantén un inventario de lo que amas. Descubre si lo comprarías de nuevo y haz seguimiento de tus colecciones con los datos que deseas. Autocompletado con IA en segundos.",
+        navFeatures: "Características",
+        navAppPrefix: "Vista previa ",
+        navPreview: "de la App",
+        navRecall: "Compañero",
+        navCompanionSuffix: " de memoria",
+        navCommunity: "Comunidad",
+        navDiscussionsSuffix: " y Discusiones",
+        navFeatureRequests: "Solicitudes de funciones",
+        navPrivacy: "Privacidad",
+        heroBadge: "★ Archivo inteligente • Reseñas personales • Veredictos de recompra • Valor de colección",
+        heroTitle: "Mantén un inventario de lo que amas. Descubre si lo <span>comprarías de nuevo</span>.",
+        heroIntro: "Toma una foto para autocompletar detalles en segundos, califica tu experiencia y registra opiniones honestas para no volverte a preguntar:",
+        heroQuote: "&ldquo;¿Me gustó esto, cuánto pagué y debería comprarlo de nuevo?&rdquo;",
+        heroOutro: "Desde café y bebidas hasta salsas picantes, libros y equipos: registra reseñas cotidianas o administra colecciones valiosas con campos personalizados y plantillas flexibles. Las posibilidades son infinitas.",
+        heroBtnPlayStore: "Google Play Store (Próximamente)",
+        heroBtnDiscussions: "Discusiones y Solicitudes de funciones",
+        featuresHeading: "Diseñado para las cosas que disfrutas",
+        featuresSubheading: "Un inventario personal y diario inteligente que hace el trabajo pesado: la IA autocompleta detalles y especificaciones, permitiéndote registrar tus reseñas y valoraciones honestas.",
+        card1Title: "Descubre si lo comprarías de nuevo",
+        card1Text: "Nunca más te quedes en un pasillo o tienda online dudando si te gustó ese café, bebida o salsa picante. Registra veredictos inmediatos de «Comprar de nuevo», precio pagado y calificaciones para acertar siempre.",
+        card2Title: "Autocompletado en segundos",
+        card2Text: "Catalogar no debería sentirse como una tediosa entrada manual. Apunta tu cámara a cualquier etiqueta, botella, empaque o portada: la visión de IA multimodal identifica al instante el artículo, estilo, fabricante y especificaciones técnicas sin escribir nada.",
+        card3Title: "Comentarios honestos y Pros/Contras",
+        card3Text: "Captura impresiones reales en el momento. Registra pros, contras y notas personales adaptadas a cada categoría para tener siempre una guía de confianza sobre lo que funcionó y lo que no.",
+        card4Title: "Dos modos de seguimiento: Reseñas o Bóvedas",
+        card4Text: "Elige entre rastreadores de reseñas (calificaciones, veredictos de recompra, precio pagado) o bóvedas de colección (grados de condición, ediciones y valores estimados de mercado).",
+        card5Title: "Detalles totalmente personalizables*",
+        card5Text: "El límite es el cielo. Usa plantillas prediseñadas o crea tus propias carpetas desde cero. Elige tus campos autocompletados* y añade atributos a medida para registrar lo que realmente te importa.",
+        card6Title: "Rápido, sin conexión y local primero",
+        card6Text: "Tu inventario personal se abre al instante y funciona donde sea, incluso totalmente sin conexión. Sin lentitud en la nube ni inicios de sesión obligatorios: tus notas y fotos permanecen seguras en tu dispositivo.",
+        previewHeading: "Adaptado a todo lo que coleccionas",
+        previewSubheading: "Desde la configuración personalizada hasta carpetas prediseñadas y una galería principal unificada: descubre cómo PocketIndex se adapta a tus pasiones.",
+        screen1Title: "1. Personaliza tu enfoque",
+        screen1Text: "Dile a la aplicación lo que te gusta registrar y configurará las carpetas adecuadas desde el primer día.",
+        screen2Title: "2. Plantillas prediseñadas al instante",
+        screen2Text: "Plantillas preparadas con campos adaptados para juegos de mesa, platos de restaurantes y bóvedas de coleccionistas.",
+        screen3Title: "3. Categorías infinitas",
+        screen3Text: "Añade café de especialidad, salsas picantes, cosmética, salsas barbacoa o construye tu propia carpeta personalizada.",
+        screen4Title: "4. Tu inventario personal",
+        screen4Text: "Un espacio visual unificado para todos tus registros de reseñas, calificaciones y valores de colección uno al lado del otro.",
+        mottoBadge: "Tu compañero de memoria",
+        mottoQuote: "&ldquo;Tu herramienta para recordar todo lo que has probado, descubierto, coleccionado y amado.&rdquo;",
+        mottoSubtext: "Ya sea el café perfecto, una salsa picante inolvidable, un juego de mesa favorito, ropa, antigüedades o piezas de colección: PocketIndex mantiene organizadas tus impresiones y colecciones para que siempre recuerdes lo que tienes, lo que has probado y lo que superó la prueba.",
+        stat1Val: "< 2s",
+        stat1Lbl: "Autocompletado IA",
+        stat2Val: "A medida",
+        stat2Lbl: "Elige campos autocompletados*",
+        stat3Val: "Sin conexión",
+        stat3Lbl: "Acceso instantáneo",
+        mottoFootnote: "*Aplican ciertos límites.",
+        communityBadge: "Comunidad y sugerencias abiertas",
+        communityQuote: "&ldquo;Ayuda a dar forma al futuro de PocketIndex.&rdquo;",
+        communitySubtext: "Vota por las próximas funciones, sugiere plantillas y debate directamente con nuestro equipo de desarrollo en GitHub.",
+        communityDiscussions: "Debates en GitHub",
+        communityIssues: "Solicitudes de funciones",
+        footerTagline: "PocketIndex • Creado para ayudarte a recordar las cosas que amas.",
+        footerDiscussions: "Debates en GitHub",
+        footerIssues: "Solicitudes de funciones",
+        footerPrivacy: "Política de privacidad",
+        footerContact: "Contacto: pocketindex.support@gmail.com"
+      }
+    };
+
+    function setLanguage(lang) {
+      if (!translations[lang]) lang = 'en';
+      document.documentElement.lang = lang;
+      try {
+        localStorage.setItem('pocketindex_lang', lang);
+      } catch (e) {}
+
+      const dict = translations[lang];
+      document.title = dict.pageTitle;
+      const metaDesc = document.querySelector('meta[name="description"]');
+      if (metaDesc) metaDesc.setAttribute('content', dict.pageDesc);
+
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (dict[key] !== undefined) {
+          el.textContent = dict[key];
+        }
+      });
+
+      document.querySelectorAll('[data-i18n-html]').forEach(el => {
+        const key = el.getAttribute('data-i18n-html');
+        if (dict[key] !== undefined) {
+          el.innerHTML = dict[key];
+        }
+      });
+
+      // Update privacy links to preserve language query parameter
+      document.querySelectorAll('a#nav-privacy-link, a#footer-privacy-link').forEach(a => {
+        a.href = `privacy.html?lang=${lang}`;
+      });
+
+      // Update active button state
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        const isActive = btn.getAttribute('data-lang') === lang;
+        btn.classList.toggle('active', isActive);
+        btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+      });
+
+      // Update URL query string smoothly
+      if (window.history && window.history.replaceState) {
+        const url = new URL(window.location);
+        url.searchParams.set('lang', lang);
+        window.history.replaceState({}, '', url);
+      }
+    }
+
+    function initLanguage() {
+      let savedLang = null;
+      try {
+        savedLang = localStorage.getItem('pocketindex_lang');
+      } catch (e) {}
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const urlLang = urlParams.get('lang');
+      const browserLang = (navigator.language || navigator.userLanguage || '').slice(0, 2).toLowerCase();
+
+      const initialLang = (urlLang && translations[urlLang])
+        ? urlLang
+        : (savedLang && translations[savedLang])
+          ? savedLang
+          : (browserLang === 'fr' || browserLang === 'es')
+            ? browserLang
+            : 'en';
+
+      setLanguage(initialLang);
+
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          setLanguage(btn.getAttribute('data-lang'));
+        });
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initLanguage);
+    } else {
+      initLanguage();
+    }
+  </script>
 </body>
 </html>
